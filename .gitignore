@@ -1,7 +1,26 @@
 #FILES
 *.vpp.*
 HELP.md
-!.mvn/wrapper/maven-wrapper.jar
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
+.vscode/
+/bin/
 
 ### STS ###
 .apt_generated
@@ -17,3 +36,4 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 !**/.metadata/
+!.mvn/wrapper/maven-wrapper.jar
