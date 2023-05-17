@@ -2,4 +2,4 @@
 *.vpp.*
 
 #FOLDERS
-!.metadata/
+.metadata/
