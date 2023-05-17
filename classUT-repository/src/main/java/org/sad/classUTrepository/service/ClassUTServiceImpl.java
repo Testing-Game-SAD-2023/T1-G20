@@ -114,7 +114,7 @@ public class ClassUTServiceImpl implements ClassUTService{
 	}
 
 	@Override
-	public Resource getClassUTasResourse(String fileName) throws ClassNotFoundException {
+	public Resource getClassUTasResource(String fileName) throws ClassNotFoundException {
 		try {
 			ClassUT toDownload = classRepository.findByname(fileName);
 			String classPath = toDownload.getLocation();

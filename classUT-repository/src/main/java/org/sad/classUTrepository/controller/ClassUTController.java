@@ -57,7 +57,7 @@ public class ClassUTController {
 	@GetMapping("/downloadClass/{fileName:.+}")
 	public ResponseEntity<Resource> downloadClassUT(@PathVariable String fileName) throws java.lang.ClassNotFoundException{
 		
-		Resource resource = classService.getClassUTasResourse(fileName);
+		Resource resource = classService.getClassUTasResource(fileName);
 		return ResponseEntity.ok().contentType(MediaType.parseMediaType(MediaType.APPLICATION_XML_VALUE))
 				.header(HttpHeaders.CONTENT_DISPOSITION,"attachment; filename=\""+resource.getFilename()+"\"").body(resource);
 	}
