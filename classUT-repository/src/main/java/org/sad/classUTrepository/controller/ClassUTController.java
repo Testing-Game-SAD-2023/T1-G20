@@ -58,8 +58,9 @@ public class ClassUTController {
 	public ResponseEntity<Resource> downloadClassUT(@PathVariable String fileName) throws java.lang.ClassNotFoundException{
 		
 		Resource resource = classService.getClassUTasResource(fileName);
-		return ResponseEntity.ok().contentType(MediaType.parseMediaType(MediaType.APPLICATION_XML_VALUE))
-				.header(HttpHeaders.CONTENT_DISPOSITION,"attachment; filename=\""+resource.getFilename()+"\"").body(resource);
+		return ResponseEntity.ok()
+				.header(HttpHeaders.CONTENT_DISPOSITION,"attachment; filename=\""+resource.getFilename()+"\"")
+				.body(resource);
 	}
 	
 	@GetMapping(value = "/viewAll", produces = MediaType.APPLICATION_XML_VALUE)
