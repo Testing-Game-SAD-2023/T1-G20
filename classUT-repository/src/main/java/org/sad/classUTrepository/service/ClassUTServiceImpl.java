@@ -117,13 +117,13 @@ public class ClassUTServiceImpl implements ClassUTService{
 	public Resource getClassUTasResource(String fileName) throws ClassNotFoundException {
 		try {
 			ClassUT toDownload = classRepository.findByname(fileName);
-			String classPath = toDownload.getLocation();
-			Resource resourceClass = new UrlResource(new File(classPath).toURI());
-			if (resourceClass.exists()) {
+			if(toDownload != null) {
+				String classPath = toDownload.getLocation();
+				Resource resourceClass = new UrlResource(new File(classPath).toURI());
 				return resourceClass;
-			}else {
-				throw new ClassNotFoundException("Class file not found "+fileName);
 			}
+			else
+				throw new ClassNotFoundException("Class file not found "+fileName);
 		}catch(MalformedURLException e) {
 			throw new ClassNotFoundException("Class file not found "+fileName,e);
 		}
