@@ -1,5 +1,6 @@
 #FILES
 *.vpp.*
+*.mwb.*
 
 #FOLDERS
 .metadata/
