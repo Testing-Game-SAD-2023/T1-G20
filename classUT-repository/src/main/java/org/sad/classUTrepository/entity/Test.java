@@ -18,21 +18,21 @@ public class Test {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id", unique = true, nullable = false)
+	@Column(name = "ID", unique = true, nullable = false)
 	private int id;
 	
-	@Column(name = "name", nullable = false, length = 45)
+	@Column(name = "NAME", nullable = false, length = 45)
 	private String name;
-	@Column(name = "filetype", nullable = false, length = 45)
+	@Column(name = "FILETYPE", nullable = false, length = 45)
 	private String filetype;
-	@Column(name = "size", nullable = false)
+	@Column(name = "SIZE", nullable = false)
 	private long size;
-	@Column(name = "path", nullable = false, length = 45)
+	@Column(name = "PATH", nullable = false, length = 45)
 	private String path;
-	@Column(name = "test_level", nullable = false, length = 45)
+	@Column(name = "TEST_LEVEL", nullable = false, length = 45)
 	private String level;
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-	@JoinColumn
+	@JoinColumn(name = "classUTs_idclassUT")
 	private ClassUT idClassUT;
 
 }
