@@ -41,27 +41,30 @@ public class ClassUTServiceImpl implements ClassUTService{
 	@Override
 	public String save(Admin admin, int complexity, MultipartFile classUT) throws IOException {
 		
-		String classPath = FOLDER_PATH + classUT.getOriginalFilename();
+		String classFolder = FOLDER_PATH + classUT.getOriginalFilename().replace(".java", "") + "\\";
+		String filePath = classFolder + classUT.getOriginalFilename();
 		try {
-			if (classPath.contains("..")) {
-				throw new FileStorageException("Invalid path!"+classPath);
+			if (filePath.contains("..")) {
+				throw new FileStorageException("Invalid path!"+filePath);
 			}
-			classUT.transferTo(new File(classPath));
+			Path directory = Paths.get(classFolder);
+			Files.createDirectory(directory);
+			classUT.transferTo(new File(filePath));
 			
 			ClassUT toSave = new ClassUT();
 			toSave.setName(classUT.getOriginalFilename());
 			toSave.setType(classUT.getContentType());
 			toSave.setSize(classUT.getSize());
-			toSave.setLocation(classPath);
+			toSave.setLocation(filePath);
 			toSave.setComplexity(complexity);
 			toSave.setAdded(new Date()); 
 			toSave.setLastupdate(toSave.getAdded());
 			toSave.setAdmin(admin);
 			classRepository.save(toSave);			
 		
-		return classPath;
+		return filePath;
 		}catch(IOException e) {
-			throw new FileStorageException("Could not store file "+classPath+". Try again!",e);
+			throw new FileStorageException("Could not store file "+filePath+". Try again!",e);
 		}
 	}
 

@@ -41,8 +41,9 @@ public class ClassUT {
 	private String location;
 	@Column(name = "SIZE", nullable = false)
 	private long size;
+	
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-	@JoinColumn(name = "admin", nullable = false)
+	@JoinColumn(name = "administrators_idAdmin", nullable = false)
 	private Admin admin;
 	@OneToMany(mappedBy = "idClassUT")
 	private List<Test> tests;

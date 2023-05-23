@@ -35,7 +35,7 @@ public class ClassUTController {
 	public UploadClassResponse uploadClassUT(@RequestParam("class_file") MultipartFile class_file, @RequestParam("complexity") int compl){
 		
 		UploadClassResponse response = new UploadClassResponse();
-		Admin A = adminService.getAdminbyId(19);
+		Admin A = adminService.getAdminbyId(1);
 		try {
 			String fileName = classService.save(A, compl, class_file);
 			String downloadURI = ServletUriComponentsBuilder.fromCurrentContextPath()
@@ -48,6 +48,7 @@ public class ClassUTController {
 			response.setNotes("OK");
 		}
 		catch (Exception e) {
+			e.printStackTrace();
 			response.setNotes("ERROR DURING SAVING!");
 		}
 		return response;
