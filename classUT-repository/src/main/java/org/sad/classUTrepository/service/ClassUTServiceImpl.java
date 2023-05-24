@@ -81,9 +81,11 @@ public class ClassUTServiceImpl implements ClassUTService{
 	}
 
 	@Override
-	public void update(int id, String newname) {
+	public ClassUT update(int id, int newComplexity) {
 		
-		classRepository.updateClassUTName(newname, id);
+		ClassUT toUpdate = classRepository.findById(id).get();
+		toUpdate.setComplexity(newComplexity);
+		return classRepository.save(toUpdate);
 	}
 
 	@Override

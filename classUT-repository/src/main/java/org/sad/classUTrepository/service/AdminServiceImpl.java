@@ -22,10 +22,11 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public Admin update(Admin item) {
+	public Admin update(int id, String newName, String newSurname) {
 		
-		Admin updateAdmin = adminRepository.findById(item.getId()).get();
-		//TODO: updateAdmin.set... = item.get ...
+		Admin updateAdmin = adminRepository.findById(id).get();
+		updateAdmin.setName(newName);
+		updateAdmin.setSurname(newSurname);
 		return adminRepository.save(updateAdmin);
 	}
 

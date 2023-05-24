@@ -13,10 +13,5 @@ public interface ClassUTRepository extends JpaRepository<ClassUT, Integer> {
 	
 	List<ClassUT> findAllClassUTByAdmin_Surname(String surname);
 	List<ClassUT> findAllClassUTByComplexity(int complexity);
-	ClassUT findByid(int id);
 	ClassUT findByname(String className);
-	@Transactional
-	@Modifying
-	@Query("UPDATE ClassUT c set c.name = ?1 where c.id = ?2")
-	void updateClassUTName(String name, int id);
 }
