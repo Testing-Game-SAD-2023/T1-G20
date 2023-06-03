@@ -32,9 +32,9 @@ public class ClassUtRepositoryApplication {
 //	@Bean
 //	public CommandLineRunner demo (ClassUTService classService,
 //										AdminService adminService) {
-//		/*return (args) -> {
+//		return (args) -> {
 //			
-//			//creo un amministratore
+//			/*//creo un amministratore
 //			/*Admin A1 = new Admin();
 //			A1.setName("Marco"); A1.setSurname("Rocchi");
 //			adminService.save(A1);
@@ -100,7 +100,7 @@ public class ClassUtRepositoryApplication {
 //				System.out.print("Dettaglio classe: "+p);
 //			System.out.print("Ho stampato------------\n");
 //			});*/
-//			
-//		};*/
-	}
-
+//		adminService.update(1, "Mario", "Rossi");	
+//		};
+//	}
+}

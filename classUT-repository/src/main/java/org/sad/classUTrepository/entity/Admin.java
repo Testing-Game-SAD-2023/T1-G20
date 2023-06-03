@@ -19,12 +19,12 @@ import lombok.Data;
 public class Admin {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "idAdmin", unique = true, nullable = false)
+	@Column(name = "ID", unique = true, nullable = false)
 	private int id;
 	
-	@Column(name = "name", nullable = false, length = 45)
+	@Column(name = "NAME", nullable = false, length = 45)
 	private String name;
-	@Column(name = "surname",nullable = false, length = 45)
+	@Column(name = "SURNAME",nullable = false, length = 45)
 	private String surname;
 	@OneToMany(mappedBy = "admin", 
 			fetch = FetchType.LAZY,
