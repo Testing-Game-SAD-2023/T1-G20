@@ -12,6 +12,7 @@ import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,8 +23,9 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import org.sad.classUTrepository.exception.ClassNotFoundException;
+import org.sad.classUTrepository.exception.FileStorageException;
 
-
+@CrossOrigin
 @RestController
 @RequestMapping("/classut_repo")
 public class ClassUTController {
@@ -47,9 +49,12 @@ public class ClassUTController {
 			response.setSize(class_file.getSize());
 			response.setNotes("OK");
 		}
+		catch (FileStorageException e) {
+	        response.setNotes("ERROR DURING SAVING: " + e.getMessage());
+	    } 
 		catch (Exception e) {
-			response.setNotes("ERROR DURING SAVING!");
-		}
+	        response.setNotes("UNEXPECTED ERROR: " + e.getMessage());
+	    }
 		return response;
 		
 	}
@@ -57,10 +62,9 @@ public class ClassUTController {
 	@GetMapping("/downloadClass/{fileName:.+}")
 	public ResponseEntity<Resource> downloadClassUT(@PathVariable String fileName) throws java.lang.ClassNotFoundException{
 		
-		Resource resource = classService.getClassUTasResource(fileName);
-		return ResponseEntity.ok()
-				.header(HttpHeaders.CONTENT_DISPOSITION,"attachment; filename=\""+resource.getFilename()+"\"")
-				.body(resource);
+		Resource resource = classService.getClassUTasResourse(fileName);
+		return ResponseEntity.ok().contentType(MediaType.parseMediaType(MediaType.APPLICATION_XML_VALUE))
+				.header(HttpHeaders.CONTENT_DISPOSITION,"attachment; filename=\""+resource.getFilename()+"\"").body(resource);
 	}
 	
 	@GetMapping(value = "/viewAll", produces = MediaType.APPLICATION_XML_VALUE)

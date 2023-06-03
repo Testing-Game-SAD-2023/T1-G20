@@ -36,7 +36,7 @@ public class ClassUTServiceImpl implements ClassUTService{
 	@Autowired
 	ModelMapper modelMapper;
 	
-	private final String FOLDER_PATH = "D:\\Universita\\SAD\\ClassUT\\";
+	private final String FOLDER_PATH = "D:\\Esami\\SAD\\ClassUT\\";
 
 	@Override
 	public String save(Admin admin, int complexity, MultipartFile classUT) throws IOException {
@@ -114,16 +114,16 @@ public class ClassUTServiceImpl implements ClassUTService{
 	}
 
 	@Override
-	public Resource getClassUTasResource(String fileName) throws ClassNotFoundException {
+	public Resource getClassUTasResourse(String fileName) throws ClassNotFoundException {
 		try {
 			ClassUT toDownload = classRepository.findByname(fileName);
-			if(toDownload != null) {
-				String classPath = toDownload.getLocation();
-				Resource resourceClass = new UrlResource(new File(classPath).toURI());
+			String classPath = toDownload.getLocation();
+			Resource resourceClass = new UrlResource(new File(classPath).toURI());
+			if (resourceClass.exists()) {
 				return resourceClass;
-			}
-			else
+			}else {
 				throw new ClassNotFoundException("Class file not found "+fileName);
+			}
 		}catch(MalformedURLException e) {
 			throw new ClassNotFoundException("Class file not found "+fileName,e);
 		}
