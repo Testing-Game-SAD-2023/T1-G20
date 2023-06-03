@@ -15,7 +15,7 @@ import java.util.Optional;
 import javax.management.modelmbean.ModelMBeanAttributeInfo;
 
 import org.modelmapper.ModelMapper;
-
+import org.sad.classUTrepository.config.FileUploadConfiguration;
 import org.sad.classUTrepository.dto.ClassUT_DTO;
 import org.sad.classUTrepository.entity.Admin;
 import org.sad.classUTrepository.entity.ClassUT;
@@ -35,13 +35,15 @@ public class ClassUTServiceImpl implements ClassUTService{
 	ClassUTRepository classRepository;
 	@Autowired
 	ModelMapper modelMapper;
+	@Autowired
+	FileUploadConfiguration fileUploadConfig;
 	
-	private final String FOLDER_PATH = "D:\\Esami\\SAD\\ClassUT\\";
+	//private final String FOLDER_PATH = "D:\\Esami\\SAD\\ClassUT\\";
 
 	@Override
 	public String save(Admin admin, int complexity, MultipartFile classUT) throws IOException {
 		
-		String classFolder = FOLDER_PATH + classUT.getOriginalFilename().replace(".java", "") + "\\";
+		String classFolder = fileUploadConfig.getUploadDir() + classUT.getOriginalFilename().replace(".java", "") + "\\";
 		String filePath = classFolder + classUT.getOriginalFilename();
 		try {
 			if (filePath.contains("..")) {
@@ -119,7 +121,7 @@ public class ClassUTServiceImpl implements ClassUTService{
 	}
 
 	@Override
-	public Resource getClassUTasResourse(String fileName) throws ClassNotFoundException {
+	public Resource getClassUTasResource(String fileName) throws ClassNotFoundException {
 		try {
 			ClassUT toDownload = classRepository.findByname(fileName);
 			String classPath = toDownload.getLocation();
