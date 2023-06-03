@@ -6,11 +6,11 @@
     body {
       font-family: Arial, sans-serif;
       margin: 20px;
-      background-color: #eaf7ea; /* Sfondo verde chiaro */
+      background-color: #eaf7ea; 
     }
     h1 {
       text-align: center;
-      font-size: 40px; /* Aggiunto per ingrandire il titolo */
+      font-size: 40px; 
     }
     form {
       margin-top: 30px;
@@ -19,14 +19,14 @@
     label {
       display: block;
       margin-bottom: 10px;
-      font-size: 18px; /* Aggiunto per ingrandire le etichette */
+      font-size: 18px; 
     }
     input[type="file"] {
       margin-bottom: 10px;
-      font-size: 16px; /* Aggiunto per ingrandire l'input del file */
+      font-size: 16px; 
     }
     input[type="number"] {
-      font-size: 16px; /* Aggiunto per ingrandire l'input del numero */
+      font-size: 16px; 
     }
     input[type="submit"] {
       padding: 10px 20px;
@@ -34,7 +34,7 @@
       color: white;
       border: none;
       cursor: pointer;
-      font-size: 18px; /* Aggiunto per ingrandire il pulsante di invio */
+      font-size: 18px; 
     }
     input[type="submit"]:hover {
       background-color: #45a049;
@@ -60,12 +60,12 @@
   
   <script>
     document.getElementById("uploadForm").addEventListener("submit", function(event) {
-      event.preventDefault(); // Prevent form submission
+      event.preventDefault(); 
       
-      // Create FormData object and append form data
+      
       var formData = new FormData(this);
       
-      // Send POST request to uploadClassUT endpoint
+      // Send POST request to uploadClassUT 
       fetch("http://localhost:8080/classut_repo/uploadClass", {
         method: "POST",
         body: formData
