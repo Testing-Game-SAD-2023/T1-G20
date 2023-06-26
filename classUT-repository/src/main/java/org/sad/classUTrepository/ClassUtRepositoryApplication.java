@@ -100,7 +100,7 @@ public class ClassUtRepositoryApplication {
 //				System.out.print("Dettaglio classe: "+p);
 //			System.out.print("Ho stampato------------\n");
 //			});*/
-//		adminService.update(1, "Mario", "Rossi");	
+//		adminService.update(1, "Mario", "Bianchi","mario.bianchi","4567");	
 //		};
 //	}
 }

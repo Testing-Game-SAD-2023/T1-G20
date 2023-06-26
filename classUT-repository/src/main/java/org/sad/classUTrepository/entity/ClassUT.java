@@ -37,7 +37,7 @@ public class ClassUT {
 	private Date added;
 	@Column(name = "LAST_UPDATE")
 	private Date lastupdate;
-	@Column(name = "LOCATION", nullable = false, length = 45)
+	@Column(name = "LOCATION", nullable = false, length = 250)
 	private String location;
 	@Column(name = "SIZE", nullable = false)
 	private long size;

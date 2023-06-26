@@ -6,6 +6,6 @@ public interface AdminService {
 
 	void save(Admin item);
 	Admin getAdminbyId(int id);
-	Admin update(int id, String newName, String newSurname);
+	Admin update(int id, String newName, String newSurname, String newUser, String newPsw);
 	void delete(int id);
 }
