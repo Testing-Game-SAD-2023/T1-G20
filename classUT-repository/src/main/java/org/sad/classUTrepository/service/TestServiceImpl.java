@@ -23,14 +23,15 @@ public class TestServiceImpl implements TestService {
 	@Override
 	public Test update(int id, String newName, String newPath, String newLevel) {
 		Test toUpdate = testRepository.findById(id).get();
-		//TODO:update
-		return null;
+		toUpdate.setName(newName);
+		toUpdate.setPath(newPath);
+		toUpdate.setLevel(newLevel);
+		return testRepository.save(toUpdate);
 	}
 
 	@Override
 	public void delete(int id) {
-		// TODO Auto-generated method stub
-
+		testRepository.deleteById(id);
 	}
 
 }

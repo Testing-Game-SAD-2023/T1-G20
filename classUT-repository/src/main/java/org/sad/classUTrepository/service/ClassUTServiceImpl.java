@@ -92,8 +92,7 @@ public class ClassUTServiceImpl implements ClassUTService{
 
 	@Override
 	public void delete(int id) {
-		ClassUT deleteClass = classRepository.findById(id).get();
-		classRepository.delete(deleteClass);
+		classRepository.deleteById(id);
 	}
 
 	@Override
