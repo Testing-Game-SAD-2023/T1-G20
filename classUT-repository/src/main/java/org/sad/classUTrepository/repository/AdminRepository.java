@@ -8,7 +8,5 @@ import org.springframework.transaction.annotation.Transactional;
 
 public interface AdminRepository extends JpaRepository<Admin, Integer> {
 	
-	Admin findByid(int id);
-
 	
 }
