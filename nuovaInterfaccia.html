@@ -62,7 +62,6 @@
     document.getElementById("uploadForm").addEventListener("submit", function(event) {
       event.preventDefault(); 
       
-      
       var formData = new FormData(this);
       
       // Send POST request to uploadClassUT 
@@ -71,13 +70,10 @@
         body: formData
       })
       .then(function(response) {
-        if (response.ok) {
-          // Successful upload
-          alert("Upload successful");
-        } else {
-          // Error during upload
-          alert("Error during upload");
-        }
+        // Notes
+        response.json().then(function(data) {
+          alert("Notes:\n" + data.notes);
+        });
       })
       .catch(function(error) {
         // Unexpected error
