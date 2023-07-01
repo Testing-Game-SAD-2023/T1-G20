@@ -38,8 +38,6 @@ public class ClassUTServiceImpl implements ClassUTService{
 	@Autowired
 	FileUploadConfiguration fileUploadConfig;
 	
-	//private final String FOLDER_PATH = "D:\\Esami\\SAD\\ClassUT\\";
-
 	@Override
 	public String save(Admin admin, int complexity, MultipartFile classUT) throws IOException {
 		
