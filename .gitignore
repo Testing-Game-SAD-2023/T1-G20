@@ -1,6 +1,7 @@
 #FILES
 *.vpp.*
 *.mwb.*
+*.lock
 
 #FOLDERS
 .metadata/
