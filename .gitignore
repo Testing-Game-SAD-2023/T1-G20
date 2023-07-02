@@ -5,4 +5,5 @@
 
 #FOLDERS
 .metadata/
-.tmp/
+.vpprefdata/
+tmp/
