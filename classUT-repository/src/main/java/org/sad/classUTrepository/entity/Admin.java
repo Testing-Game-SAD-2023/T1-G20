@@ -35,7 +35,7 @@ public class Admin {
 	//private String username;
 	@Column(name = "Email",nullable = false, length = 100, unique = true)
     private String email;
-	@Column(name = "PSW",nullable = false, length = 45)
+	@Column(name = "PSW",nullable = false, length = 32767)
 	private String psw;
 	@OneToMany(mappedBy = "admin", 
 			fetch = FetchType.LAZY,

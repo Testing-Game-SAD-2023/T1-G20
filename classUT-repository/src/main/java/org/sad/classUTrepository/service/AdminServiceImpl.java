@@ -11,9 +11,16 @@ import org.springframework.stereotype.Service;
 public class AdminServiceImpl implements AdminService {
 	
 	private PasswordEncoder passwordEncoder;
+	public AdminServiceImpl(AdminRepository adminRepository,
+            
+            PasswordEncoder passwordEncoder) {
+			this.adminRepository = adminRepository;
+			this.passwordEncoder = passwordEncoder;
+}
 
 	@Autowired
 	AdminRepository adminRepository;
+	
 	
 	@Override
 	public void save(Admin item) {
