@@ -31,12 +31,12 @@ public class SpringSecurity {
                         authorize.requestMatchers("/register/**").permitAll()
                                 .requestMatchers("/index").permitAll()
                                 .requestMatchers("/classut_repo/**").permitAll()
-                                .requestMatchers("/classut_repo/uploadClass").permitAll()
+                                .requestMatchers("/uploadCUT").permitAll()
                 ).formLogin(
                         form -> form
                                 .loginPage("/login")
                                 .loginProcessingUrl("/login")
-                                .defaultSuccessUrl("/classut_repo/uploadClass")
+                                .defaultSuccessUrl("/upload", true)
                                 .permitAll()
                 ).logout(
                         logout -> logout
