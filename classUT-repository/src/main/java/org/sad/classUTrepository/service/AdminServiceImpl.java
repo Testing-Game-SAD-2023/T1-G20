@@ -1,6 +1,6 @@
 package org.sad.classUTrepository.service;
 
-import org.sad.classUTrepository.dto.AdminDto;
+
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.sad.classUTrepository.entity.Admin;
 import org.sad.classUTrepository.repository.AdminRepository;
@@ -10,22 +10,24 @@ import org.springframework.stereotype.Service;
 @Service
 public class AdminServiceImpl implements AdminService {
 	
-	private PasswordEncoder passwordEncoder;
-	public AdminServiceImpl(AdminRepository adminRepository,
+	
+	/*public AdminServiceImpl(AdminRepository adminRepository,
             
             PasswordEncoder passwordEncoder) {
 			this.adminRepository = adminRepository;
 			this.passwordEncoder = passwordEncoder;
-}
+}*/
 
 	@Autowired
-	AdminRepository adminRepository;
+	private AdminRepository adminRepository;
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 	
 	
-	@Override
+	/*@Override
 	public void save(Admin item) {
 		adminRepository.save(item);
-	}
+	}*/
 
 	@Override
 	public Admin getAdminbyId(int id) {
@@ -38,14 +40,11 @@ public class AdminServiceImpl implements AdminService {
 	    }
 	 
 	 @Override
-	    public void saveAdmin(AdminDto AdminDto) {
-	        Admin Admin = new Admin();
-	        Admin.setName(AdminDto.getFirstName());
-	        Admin.setSurname(AdminDto.getLastName());
-	        Admin.setEmail(AdminDto.getEmail());
+	    public void save(Admin AdminDto) {
+	        
 	        // encrypt the password using spring security
-	        Admin.setPsw(passwordEncoder.encode(AdminDto.getPassword()));
-	        adminRepository.save(Admin);
+	        AdminDto.setPsw(passwordEncoder.encode(AdminDto.getPsw()));
+	        adminRepository.save(AdminDto);
 	    }
 
 	@Override

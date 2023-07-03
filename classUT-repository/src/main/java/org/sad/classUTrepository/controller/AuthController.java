@@ -1,7 +1,6 @@
 package org.sad.classUTrepository.controller;
 
 import jakarta.validation.Valid;
-import org.sad.classUTrepository.dto.AdminDto;
 import org.sad.classUTrepository.entity.Admin;
 import org.sad.classUTrepository.service.AdminServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +31,7 @@ public class AuthController {
     @GetMapping("/register")
     public String showRegistrationForm(Model model){
         // create model object to store form data
-        AdminDto user = new AdminDto();
+        Admin user = new Admin();
         model.addAttribute("user", user);
         return "register";
     }
@@ -40,7 +39,7 @@ public class AuthController {
     
     // handler method to handle user registration form submit request
     @PostMapping("/register/save")
-    public String registration(@Valid @ModelAttribute("user") AdminDto adminDto,
+    public String registration(@Valid @ModelAttribute("user") Admin adminDto,
                                BindingResult result,
                                Model model){
         Admin existingAdmin = adminService.findByEmail(adminDto.getEmail());
@@ -55,7 +54,7 @@ public class AuthController {
             return "/register";
         }
 
-        adminService.saveAdmin(adminDto);
+        adminService.save(adminDto);
         return "redirect:/register?success";
     }
     
