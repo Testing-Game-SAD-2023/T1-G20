@@ -31,9 +31,7 @@ public class Admin {
 	private String name;
 	@Column(name = "SURNAME",nullable = false, length = 45)
 	private String surname;
-	//@Column(name = "USERNAME",nullable = false, length = 100, unique = true)
-	//private String username;
-	@Column(name = "Email",nullable = false, length = 100, unique = true)
+	@Column(name = "EMAIL",nullable = false, length = 100, unique = true)
     private String email;
 	@Column(name = "PSW",nullable = false, length = 32767)
 	private String psw;
