@@ -1,5 +1,7 @@
 package org.sad.classUTrepository.controller;
 
+import java.io.IOException;
+import java.nio.file.InvalidPathException;
 import java.security.Principal;
 import java.util.List;
 
@@ -24,7 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import org.sad.classUTrepository.exception.ClassNotFoundException;
+
 
 @CrossOrigin
 @RestController
@@ -39,7 +41,7 @@ public class ClassUTController {
 	public UploadClassResponse uploadClassUT(@RequestParam("class_file") MultipartFile class_file, @RequestParam("complexity") int compl, Principal principal){
 		
 		UploadClassResponse response = new UploadClassResponse();
-		//TODO: aggiornare dopo aver realizzato login e registrazione dell'admin
+		
 		String email = principal.getName();
 		Admin A = adminService.findByEmail(email);
 		try {
@@ -51,23 +53,34 @@ public class ClassUTController {
 			response.setFileType(class_file.getContentType());
 			response.setFileDownloadURI(downloadURI);
 			response.setSize(class_file.getSize());
-			response.setNotes("OK");
+			response.setNotes("File uploaded successfully!");
 		}
-		catch (Exception e) {
-			e.printStackTrace();
-			response.setNotes("ERROR DURING SAVING!");
+		catch (IOException e) {
+			//e.printStackTrace();
+			response.setNotes("Errors occurred during saving!");
+		}
+		catch (InvalidPathException e) {
+			if (e.getIndex() == 2)
+				response.setNotes("The filename is too long!");
+			else
+				response.setNotes("Invalid path provided!");
 		}
 		return response;
 		
 	}
 	
 	@GetMapping("/downloadClass/{fileName:.+}")
-	public ResponseEntity<Resource> downloadClassUT(@PathVariable String fileName) throws java.lang.ClassNotFoundException{
+	public ResponseEntity<Resource> downloadClassUT(@PathVariable String fileName){
 		
+		try {
 		Resource resource = classService.getClassUTasResource(fileName);
 		return ResponseEntity.ok()
 				.header(HttpHeaders.CONTENT_DISPOSITION,"attachment; filename=\""+resource.getFilename()+"\"")
 				.body(resource);
+		}
+		catch(java.lang.ClassNotFoundException e) {
+			return ResponseEntity.notFound().build();
+		}
 	}
 	
 	@GetMapping(value = "/viewAll", produces = MediaType.APPLICATION_XML_VALUE)
