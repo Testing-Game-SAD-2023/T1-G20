@@ -32,6 +32,7 @@ public class SpringSecurity {
                                 .requestMatchers("/index").permitAll()
                                 .requestMatchers("/classut_repo/downloadClass/*").permitAll()
                                 .requestMatchers("/classut_repo/viewAll").permitAll()
+                                .requestMatchers("/classut_repo/uploadClass").hasAuthority("ROLE_ADMIN")
                                 .requestMatchers("/upload").hasAuthority("ROLE_ADMIN")
                                // .requestMatchers("/uploadCUT").hasAuthority("ROLE_ADMIN")
                 ).formLogin(
