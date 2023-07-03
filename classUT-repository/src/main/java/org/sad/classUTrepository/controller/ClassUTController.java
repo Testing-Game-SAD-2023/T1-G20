@@ -8,6 +8,7 @@ import java.util.List;
 import org.sad.classUTrepository.dto.ClassUT_DTO;
 import org.sad.classUTrepository.dto.UploadClassResponse;
 import org.sad.classUTrepository.entity.Admin;
+import org.sad.classUTrepository.exception.ClassNotFoundException;
 import org.sad.classUTrepository.service.AdminServiceImpl;
 import org.sad.classUTrepository.service.ClassUTServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -78,7 +79,7 @@ public class ClassUTController {
 				.header(HttpHeaders.CONTENT_DISPOSITION,"attachment; filename=\""+resource.getFilename()+"\"")
 				.body(resource);
 		}
-		catch(java.lang.ClassNotFoundException e) {
+		catch(ClassNotFoundException e) {
 			return ResponseEntity.notFound().build();
 		}
 	}

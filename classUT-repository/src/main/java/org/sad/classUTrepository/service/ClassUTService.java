@@ -18,5 +18,5 @@ public interface ClassUTService {
 	void delete(int id);
 	List<ClassUT_DTO> getClassesbyAdmin(String admin_surname);
 	List<ClassUT_DTO> getClassesbyComplexity(int complexity);
-	Resource getClassUTasResource(String fileName) throws ClassNotFoundException;
+	Resource getClassUTasResource(String fileName) throws org.sad.classUTrepository.exception.ClassNotFoundException;
 }

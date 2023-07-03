@@ -124,7 +124,7 @@ public class ClassUTServiceImpl implements ClassUTService{
 	}
 
 	@Override
-	public Resource getClassUTasResource(String fileName) throws ClassNotFoundException {
+	public Resource getClassUTasResource(String fileName) throws org.sad.classUTrepository.exception.ClassNotFoundException {
 		try {
 			ClassUT toDownload = classRepository.findByname(fileName);
 			String classPath = toDownload.getLocation();
@@ -132,10 +132,10 @@ public class ClassUTServiceImpl implements ClassUTService{
 			if (resourceClass.exists()) {
 				return resourceClass;
 			}else {
-				throw new ClassNotFoundException("Class file not found "+fileName);
+				throw new org.sad.classUTrepository.exception.ClassNotFoundException("Class file not found "+fileName);
 			}
 		}catch(MalformedURLException e) {
-			throw new ClassNotFoundException("Class file not found "+fileName,e);
+			throw new org.sad.classUTrepository.exception.ClassNotFoundException("Class file not found "+fileName,e);
 		}
 	}
 }
