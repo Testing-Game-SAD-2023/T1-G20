@@ -1,5 +1,6 @@
 package org.sad.classUTrepository.controller;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.sad.classUTrepository.dto.ClassUT_DTO;
@@ -35,10 +36,11 @@ public class ClassUTController {
 	
 
 	@PostMapping("/uploadClass")
-	public UploadClassResponse uploadClassUT(@RequestParam("class_file") MultipartFile class_file, @RequestParam("complexity") int compl, @ModelAttribute("email") String email){
+	public UploadClassResponse uploadClassUT(@RequestParam("class_file") MultipartFile class_file, @RequestParam("complexity") int compl, Principal principal){
 		
 		UploadClassResponse response = new UploadClassResponse();
 		//TODO: aggiornare dopo aver realizzato login e registrazione dell'admin
+		String email = principal.getName();
 		Admin A = adminService.findByEmail(email);
 		try {
 			String fileName = classService.save(A, compl, class_file);
