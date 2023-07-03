@@ -22,6 +22,8 @@ import lombok.Data;
 @Data
 public class ClassUT {
 		
+	
+	public static final int LOCATION_LENGHT = 255;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID", unique = true, nullable = false)
