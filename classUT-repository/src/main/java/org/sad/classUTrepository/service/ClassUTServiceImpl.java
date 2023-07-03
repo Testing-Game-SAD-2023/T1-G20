@@ -20,7 +20,6 @@ import org.sad.classUTrepository.config.FileUploadConfiguration;
 import org.sad.classUTrepository.dto.ClassUT_DTO;
 import org.sad.classUTrepository.entity.Admin;
 import org.sad.classUTrepository.entity.ClassUT;
-import org.sad.classUTrepository.exception.FileStorageException;
 import org.sad.classUTrepository.repository.ClassUTRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
