@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.nio.file.Files;
+import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
@@ -19,7 +20,6 @@ import org.sad.classUTrepository.config.FileUploadConfiguration;
 import org.sad.classUTrepository.dto.ClassUT_DTO;
 import org.sad.classUTrepository.entity.Admin;
 import org.sad.classUTrepository.entity.ClassUT;
-import org.sad.classUTrepository.exception.FileStorageException;
 import org.sad.classUTrepository.repository.ClassUTRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
@@ -39,14 +39,14 @@ public class ClassUTServiceImpl implements ClassUTService{
 	FileUploadConfiguration fileUploadConfig;
 	
 	@Override
-	public String save(Admin admin, int complexity, MultipartFile classUT) throws IOException {
+	public String save(Admin admin, int complexity, MultipartFile classUT) throws IOException, InvalidPathException {
 		
 		String classFolder = fileUploadConfig.getUploadDir() + classUT.getOriginalFilename().replace(".java", "") + "\\";
 		String filePath = classFolder + classUT.getOriginalFilename();
 		try {
-			if (filePath.contains("..")) {
+			/*if (filePath.contains("..")) {
 				throw new FileStorageException("Invalid path!"+filePath);
-			}
+			}*/
 			Path directory = Paths.get(classFolder);
 			Files.createDirectory(directory);
 			classUT.transferTo(new File(filePath));
@@ -55,7 +55,10 @@ public class ClassUTServiceImpl implements ClassUTService{
 			toSave.setName(classUT.getOriginalFilename());
 			toSave.setType(classUT.getContentType());
 			toSave.setSize(classUT.getSize());
-			toSave.setLocation(filePath);
+			if(filePath.length() > ClassUT.LOCATION_LENGHT)
+				throw new InvalidPathException(filePath, "The path exceeds the maximum location lenght", 2);
+			else
+				toSave.setLocation(filePath);
 			toSave.setComplexity(complexity);
 			toSave.setAdded(new Date()); 
 			toSave.setLastupdate(toSave.getAdded());
@@ -64,7 +67,10 @@ public class ClassUTServiceImpl implements ClassUTService{
 		
 		return filePath;
 		}catch(IOException e) {
-			throw new FileStorageException("Could not store file "+filePath+". Try again!",e);
+			throw new IOException("Can't store file ",e);
+		}
+		catch(InvalidPathException e) {
+			throw new InvalidPathException(filePath, "Invalid path!", 1);
 		}
 	}
 

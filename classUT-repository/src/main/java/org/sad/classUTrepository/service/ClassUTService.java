@@ -1,6 +1,7 @@
 package org.sad.classUTrepository.service;
 
 import java.io.IOException;
+import java.nio.file.InvalidPathException;
 import java.util.List;
 
 import org.sad.classUTrepository.dto.ClassUT_DTO;
@@ -11,7 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 public interface ClassUTService {
 	
-	String save(Admin admin, int complexity, MultipartFile classUT) throws IOException;
+	String save(Admin admin, int complexity, MultipartFile classUT) throws IOException, InvalidPathException;
 	List<ClassUT_DTO> getAll();
 	ClassUT update(int id, int newComplexity);
 	void delete(int id);
