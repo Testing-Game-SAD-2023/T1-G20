@@ -69,7 +69,7 @@ public class AuthController {
     
     @GetMapping("/upload")
     public String upload(){
-        return "redirect:/uploadCUT";
+        return "/upload";
     }
     
     

@@ -31,16 +31,18 @@ public class CustomUserDetailsService implements UserDetailsService {
         if (user != null) {
             return new org.springframework.security.core.userdetails.User(user.getEmail(),
                     user.getPsw(),
-                    Arrays.asList(new SimpleGrantedAuthority("ADMIN"))
-    		);
+                    Collections.singletonList(new SimpleGrantedAuthority("ROLE_ADMIN")));
+
+                    
+    		
         }else{
             throw new UsernameNotFoundException("Invalid username or password.");
         }
     }
 
-    /*private Collection < ? extends GrantedAuthority> mapRolesToAuthorities(Collection <Role> roles) {
+    /*private Collection < ? extends GrantedAuthority> mapRolesToAuthorities(Collection <String> roles) {
         Collection < ? extends GrantedAuthority> mapRoles = roles.stream()
-                .map(role -> new SimpleGrantedAuthority(role.getName()))
+                .map(role -> new SimpleGrantedAuthority("ADMIN"))
                 .collect(Collectors.toList());
         return mapRoles;
     }*/
