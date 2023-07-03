@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
   <title>Upload Class</title>
   <style>
@@ -44,7 +44,7 @@
 <body>
   <h1>Upload Class</h1>
   
-  <form id="uploadForm" enctype="multipart/form-data">
+  <form id="uploadForm" enctype="multipart/form-data" th:action="@{/classut_repo/uploadClass}" method="post">
     <label for="class_file">Seleziona il file:</label>
     <input type="file" name="class_file" id="class_file" required>
     <br>
@@ -62,22 +62,18 @@
     document.getElementById("uploadForm").addEventListener("submit", function(event) {
       event.preventDefault(); 
       
-      
       var formData = new FormData(this);
       
       // Send POST request to uploadClassUT 
-      fetch("http://localhost:8080/classut_repo/uploadClass", {
+      fetch(/*"http://localhost:8080/classut_repo/uploadClass"*/ this.action, {
         method: "POST",
         body: formData
       })
       .then(function(response) {
-        if (response.ok) {
-          // Successful upload
-          alert("Upload successful");
-        } else {
-          // Error during upload
-          alert("Error during upload");
-        }
+        // Notes
+        response.json().then(function(data) {
+          alert("Notes:\n" + data.notes);
+        });
       })
       .catch(function(error) {
         // Unexpected error

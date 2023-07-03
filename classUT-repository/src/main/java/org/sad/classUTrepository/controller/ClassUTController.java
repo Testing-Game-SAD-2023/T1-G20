@@ -1,5 +1,6 @@
 package org.sad.classUTrepository.controller;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.sad.classUTrepository.dto.ClassUT_DTO;
@@ -14,6 +15,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,12 +34,14 @@ public class ClassUTController {
 	@Autowired ClassUTServiceImpl classService;
 	@Autowired AdminServiceImpl adminService;
 	
+
 	@PostMapping("/uploadClass")
-	public UploadClassResponse uploadClassUT(@RequestParam("class_file") MultipartFile class_file, @RequestParam("complexity") int compl){
+	public UploadClassResponse uploadClassUT(@RequestParam("class_file") MultipartFile class_file, @RequestParam("complexity") int compl, Principal principal){
 		
 		UploadClassResponse response = new UploadClassResponse();
 		//TODO: aggiornare dopo aver realizzato login e registrazione dell'admin
-		Admin A = adminService.getAdminbyId(1);
+		String email = principal.getName();
+		Admin A = adminService.findByEmail(email);
 		try {
 			String fileName = classService.save(A, compl, class_file);
 			String downloadURI = ServletUriComponentsBuilder.fromCurrentContextPath()
