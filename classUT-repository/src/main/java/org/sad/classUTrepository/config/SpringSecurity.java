@@ -30,7 +30,7 @@ public class SpringSecurity {
                 .authorizeHttpRequests((authorize) ->
                         authorize.requestMatchers("/register/**").permitAll()
                                 .requestMatchers("/index").permitAll()
-                                .requestMatchers("/classut_repo/downloadClass/*").permitAll()
+                                .requestMatchers("/classut_repo/downloadClass/{fileName:.+}").permitAll()
                                 .requestMatchers("/classut_repo/viewAll").permitAll()
                                 .requestMatchers("/classut_repo/uploadClass").hasAuthority("ROLE_ADMIN")
                                 .requestMatchers("/upload").hasAuthority("ROLE_ADMIN")
