@@ -12,6 +12,7 @@
 	<artifactId>classut_repo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>classut_repo</name>
+	<packaging>jar</packaging>
 	<description>Spring project to managing classUT files</description>
 	<properties>
 		<java.version>20</java.version>
