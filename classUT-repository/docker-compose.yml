@@ -12,10 +12,12 @@ services:
             SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/classut_repo?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true
             SPRING_DATASOURCE_USERNAME: root
             SPRING_DATASOURCE_PASSWORD: root
-            FILE_UPLOAD-DIR: app/ClassUT/
+            FILE_UPLOAD_DIR: /app/ClassUT/
         depends_on:    
             db:
                 condition: service_healthy
+        volumes:
+            - D:\Universita\SAD\ClassUT:/app/ClassUT
         #networks:
         #    - repo-network
     db:
