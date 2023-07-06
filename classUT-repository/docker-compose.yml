@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+    app:
+        container_name: controller
+        build: .
+        ports:
+            - 8080:8080
+        expose:
+            - 8080
+        environment:
+            SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/classut_repo?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true
+            SPRING_DATASOURCE_USERNAME: root
+            SPRING_DATASOURCE_PASSWORD: root
+            FILE_UPLOAD-DIR: app/ClassUT/
+        depends_on:    
+            db:
+                condition: service_healthy
+        #networks:
+        #    - repo-network
+    db:
+        image: mysql:8
+        volumes:
+            - $HOME/database:/var/lib/mysql
+        #ports:
+        #    - 3306:3306
+        #expose:
+        #    - 3306
+        environment:
+            DATABASE_PORT: 3306
+            MYSQL_USER: admin
+            MYSQL_PASSWORD: root
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_DATABASE: classut_repo
+        healthcheck:
+            test: ["CMD","mysqladmin","ping","-h","localhost"]
+            timeout: 20s
+            retries: 10
+        restart: always
+        #networks:
+        #    repo-network:
+        #        aliases:
+        #            - MySQLdb
+#networks:
+#    repo-network:

@@ -38,7 +38,7 @@ public class AuthController {
     
     
     // handler method to handle user registration form submit request
-    @PostMapping("/register/save")
+    @PostMapping("register/save")
     public String registration(@Valid @ModelAttribute("user") Admin adminDto,
                                BindingResult result,
                                Model model){
@@ -51,11 +51,11 @@ public class AuthController {
 
         if(result.hasErrors()){
             model.addAttribute("user", adminDto);
-            return "/register";
+            return "register";
         }
 
         adminService.save(adminDto);
-        return "redirect:/register?success";
+        return "redirect:register?success";
     }
     
     
@@ -68,7 +68,7 @@ public class AuthController {
     
     @GetMapping("/upload")
     public String upload(){
-        return "/upload";
+        return "upload";
     }
     
     
