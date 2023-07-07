@@ -5,7 +5,7 @@ services:
         container_name: controller
         build: .
         ports:
-            - 8080:8080
+            - 8081:8080
         expose:
             - 8080
         environment:
@@ -18,14 +18,13 @@ services:
                 condition: service_healthy
         volumes:
             - D:\Universita\SAD\ClassUT:/app/ClassUT
-        #networks:
-        #    - repo-network
+
     db:
         image: mysql:8
         volumes:
             - $HOME/database:/var/lib/mysql
-        #ports:
-        #    - 3306:3306
+        ports:
+            - 3306:3306
         #expose:
         #    - 3306
         environment:
@@ -39,9 +38,3 @@ services:
             timeout: 20s
             retries: 10
         restart: always
-        #networks:
-        #    repo-network:
-        #        aliases:
-        #            - MySQLdb
-#networks:
-#    repo-network:

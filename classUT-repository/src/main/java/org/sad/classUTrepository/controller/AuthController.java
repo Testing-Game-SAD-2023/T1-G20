@@ -55,7 +55,8 @@ public class AuthController {
         }
 
         adminService.save(adminDto);
-        return "redirect:register?success";
+        //return "redirect:/register?success";
+        return "redirect:/register?success";
     }
     
     

@@ -41,7 +41,7 @@ public class ClassUTServiceImpl implements ClassUTService{
 	@Override
 	public String save(Admin admin, int complexity, MultipartFile classUT) throws IOException, InvalidPathException {
 		
-		String classFolder = fileUploadConfig.getUploadDir() + classUT.getOriginalFilename().replace(".java", "") + "\\";
+		String classFolder = fileUploadConfig.getUploadDir() + classUT.getOriginalFilename().replace(".java", "") + "//";
 		String filePath = classFolder + classUT.getOriginalFilename();
 		try {
 			/*if (filePath.contains("..")) {
