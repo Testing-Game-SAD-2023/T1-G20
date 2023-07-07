@@ -21,8 +21,8 @@ services:
 
     db:
         image: mysql:8
-        volumes:
-            - $HOME/database:/var/lib/mysql
+        #volumes:
+        #    - $HOME/database:/var/lib/mysql
         ports:
             - 3306:3306
         #expose:
