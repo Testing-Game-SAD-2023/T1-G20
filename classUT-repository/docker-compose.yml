@@ -21,12 +21,12 @@ services:
 
     db:
         image: mysql:8
-        #volumes:
-        #    - $HOME/database:/var/lib/mysql
+        volumes:
+            - D:\Universita\SAD\database:/var/lib/mysql
         ports:
             - 3306:3306
-        #expose:
-        #    - 3306
+        expose:
+            - 3306
         environment:
             DATABASE_PORT: 3306
             MYSQL_USER: admin
