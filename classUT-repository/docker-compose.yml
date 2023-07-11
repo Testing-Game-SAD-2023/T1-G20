@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
     app:
-        container_name: controller
+        container_name: controller-T1-G20
         build: .
         ports:
             - 8081:8080
@@ -20,6 +20,7 @@ services:
             - D:\Universita\SAD\ClassUT:/app/ClassUT
 
     db:
+        container_name: db-T1-G20
         image: mysql:8
         volumes:
             - D:\Universita\SAD\database:/var/lib/mysql
