@@ -9,7 +9,9 @@ import org.sad.classUTrepository.dto.ClassUT_DTO;
 import org.sad.classUTrepository.dto.UploadClassResponse;
 import org.sad.classUTrepository.entity.Admin;
 import org.sad.classUTrepository.exception.ClassNotFoundException;
+import org.sad.classUTrepository.service.AdminService;
 import org.sad.classUTrepository.service.AdminServiceImpl;
+import org.sad.classUTrepository.service.ClassUTService;
 import org.sad.classUTrepository.service.ClassUTServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
@@ -34,8 +36,8 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 @RequestMapping("/classut_repo")
 public class ClassUTController {
 
-	@Autowired ClassUTServiceImpl classService;
-	@Autowired AdminServiceImpl adminService;
+	@Autowired ClassUTService classService;
+	@Autowired AdminService adminService;
 	
 
 	@PostMapping("/uploadClass")

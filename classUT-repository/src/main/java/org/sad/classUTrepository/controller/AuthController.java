@@ -2,7 +2,7 @@ package org.sad.classUTrepository.controller;
 
 import jakarta.validation.Valid;
 import org.sad.classUTrepository.entity.Admin;
-import org.sad.classUTrepository.service.AdminServiceImpl;
+import org.sad.classUTrepository.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,7 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 @Controller
 public class AuthController {
 	
-	@Autowired AdminServiceImpl adminService;
+	@Autowired AdminService adminService;
 
     // handler method to handle home page request
     @GetMapping("/index")
